@@ -5,7 +5,7 @@ import tensorflow as tf
 import threading
 import time
 import traceback
-from text import cmudict, text_to_sequence
+from text import cmudict, clusters_to_sequence
 from util.infolog import log
 
 
@@ -108,7 +108,7 @@ class DataFeeder(threading.Thread):
     if self._cmudict and random.random() < _p_cmudict:
       text = ' '.join([self._maybe_get_arpabet(word) for word in text.split(' ')])
 
-    input_data = np.asarray(text_to_sequence(text, self._cleaner_names), dtype=np.int32)
+    input_data = np.asarray(clusters_to_sequence(text), dtype=np.int32)
     linear_target = np.load(os.path.join(self._datadir, meta[0]))
     mel_target = np.load(os.path.join(self._datadir, meta[1]))
     return (input_data, mel_target, linear_target, len(linear_target))

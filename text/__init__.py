@@ -54,6 +54,17 @@ def sequence_to_text(sequence):
   return result.replace('}{', ' ')
 
 
+def clusters_to_sequence(text):
+    text_symbols = text.split(' ')
+    seq = [_symbol_to_id[sym] for sym in text_symbols]
+    seq.append(_symbol_to_id['~'])
+    return seq
+
+
+def sequence_to_clusters(sequence):
+    return ' '.join([_id_to_symbol[symbol_id] for symbol_id in sequence])
+
+
 def _clean_text(text, cleaner_names):
   for name in cleaner_names:
     cleaner = getattr(cleaners, name)

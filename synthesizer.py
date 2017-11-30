@@ -27,7 +27,7 @@ class Synthesizer:
 
   def synthesize(self, text):
     cleaner_names = [x.strip() for x in hparams.cleaners.split(',')]
-    seq = clusters_to_sequence(text, cleaner_names)
+    seq = clusters_to_sequence(text)
     feed_dict = {
       self.model.inputs: [np.asarray(seq, dtype=np.int32)],
       self.model.input_lengths: np.asarray([len(seq)], dtype=np.int32)

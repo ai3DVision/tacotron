@@ -19,7 +19,7 @@ button[disabled] {opacity: 0.4; cursor: default}
 </style>
 <body>
 <form>
-  <input id="text" type="text" size="40" placeholder="Enter Text">
+  <input id="text" type="text" size="40" placeholder="Enter Phonemes">
   <button id="button" name="synthesize">Speak</button>
 </form>
 <p id="message"></p>

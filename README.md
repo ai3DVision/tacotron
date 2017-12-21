@@ -1,7 +1,8 @@
 # Tacotron
 
-An implementation of Tacotron speech synthesis in TensorFlow.
+This is a lightly-modified fork of [Keith Ito's implementation of Tacotron](https://github.com/keithito/tacotron) speech synthesis in TensorFlow. I created it for a speech recognition and synthesis project.
 
+The only real modification I made is to the character set, which in my implementation is a list of phonemes and vowel cluster labels, as opposed to letters. Other than that, the code is essentially unchanged.
 
 ### Audio Samples
 
@@ -151,14 +152,14 @@ Pull requests are welcome!
     `--restore_step=150000` flag to train.py (replacing 150000 with a step number prior to the
     spike). **Update**: a recent [fix](https://github.com/keithito/tacotron/pull/7) to gradient
     clipping by @candlewill may have fixed this.
-    
+
   * During eval and training, audio length is limited to `max_iters * outputs_per_step * frame_shift_ms`
     milliseconds. With the defaults (max_iters=200, outputs_per_step=5, frame_shift_ms=12.5), this is
     12.5 seconds.
-    
+
     If your training examples are longer, you will see an error like this:
     `Incompatible shapes: [32,1340,80] vs. [32,1000,80]`
-    
+
     To fix this, you can set a larger value of `max_iters` by passing `--hparams="max_iters=300"` to
     train.py (replace "300" with a value based on how long your audio is and the formula above).
 
